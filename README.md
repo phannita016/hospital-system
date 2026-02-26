@@ -79,6 +79,10 @@ This project is developed in collaboration with AI (Antigravity). We utilize AI 
     go run cmd/main.go
     ```
 
+4.  **Run with Live Reload (Air)**
+    - Install Air: `go install github.com/air-verse/air@latest`
+    - Run: `air`
+
 ### API Endpoints
 - **Health Check**: `GET /health` - Returns the current status of the API.
 

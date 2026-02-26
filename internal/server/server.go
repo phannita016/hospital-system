@@ -7,13 +7,12 @@ import (
 )
 
 func Run(cfg *config.Config) {
-	db := cfg.Database
-
-	pool, _, err := driver.NewDB(db)
+	db, cleanup, err := driver.NewDB(cfg.Database)
 	if err != nil {
 		log.Fatalf("failed to connect to database: %v", err)
 	}
-	defer pool.Close()
+	defer cleanup()
+	_ = db // Suppress unused variable error until repositories are implemented
 	log.Println("Database connection successful. Application is running.")
 
 	engine := NewGinEngine(cfg)

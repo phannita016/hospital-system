@@ -1,35 +1,34 @@
 package driver
 
 import (
-	"context"
 	"fmt"
 	"hospital/config"
 	"log"
 	"time"
 
-	"github.com/jackc/pgx/v5/pgxpool"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-func NewDB(dsn config.Database) (*pgxpool.Pool, func(), error) {
+func NewDB(dsn config.Database) (*gorm.DB, func(), error) {
 	f := func() {}
 
 	if !dsn.IsValid() {
 		return nil, f, fmt.Errorf("invalid database config")
 	}
 
-	conf, err := pgxpool.ParseConfig(dsn.DSN())
-	if err != nil {
-		return nil, f, err
-	}
-
-	var pool *pgxpool.Pool
+	var db *gorm.DB
+	var err error
 	maxAttempts := 3
 	for i := 1; i <= maxAttempts; i++ {
-		pool, err = pgxpool.NewWithConfig(context.Background(), conf)
-		if err == nil && pool != nil {
-			err = pool.Ping(context.Background())
+		db, err = gorm.Open(postgres.Open(dsn.DSN()), &gorm.Config{})
+		if err == nil && db != nil {
+			sqlDB, err := db.DB()
 			if err == nil {
-				return pool, func() { pool.Close() }, nil
+				err = sqlDB.Ping()
+				if err == nil {
+					return db, func() { sqlDB.Close() }, nil
+				}
 			}
 		}
 

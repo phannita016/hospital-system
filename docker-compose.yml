@@ -25,7 +25,9 @@ services:
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: hospital
-    command: [ "./server" ]
+    volumes:
+      - .:/app
+    command: ["air", "-c", ".air.toml"]
 
 volumes:
   postgres_data:

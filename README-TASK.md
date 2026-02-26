@@ -12,3 +12,5 @@ This file tracks the updates and tasks completed within the Hospital System proj
 | 2026-02-26 10:35 | AI | Refine Structure Details | Expanded `README.md` structure with specific file names and deeper detail levels. |
 | 2026-02-26 10:36 | Developer | Manual Structure Adjustment | Manually adjusted `README.md` structure to keep it clean and focused. |
 | 2026-02-26 10:38 | AI | Update Log Purpose | Updated `README-TASK.md` to clearly distinguish between AI and Developer roles. |
+| 2026-02-26 11:02 | AI | Add Air Live Reload | Integrated Air for live reloading, updated Docker setup, and README instructions. |
+| 2026-02-26 11:04 | AI | Integrate GORM ORM | Switched database driver to GORM with PostgreSQL, enabling better ORM capabilities and Clean Architecture. |
