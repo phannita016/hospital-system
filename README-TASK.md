@@ -18,3 +18,4 @@ This file tracks the updates and tasks completed within the Hospital System proj
 | 2026-02-26 11:50 | Developer | Integration & Testing | Reviewed and integrated Staff and Patient modules, ensuring correct database migrations and security settings. |
 | 2026-02-26 15:45 | Developer | Bug Identification | Identified that logs were not responding with error messages and initiated the debugging process. |
 | 2026-02-26 15:59 | AI | Fix Logging Error Messages | Updated `ErrorResponse` utility to include errors in Gin context, ensuring they appear in logs. |
+| 2026-02-26 16:10 | AI | Update README Tech Stack | Added a detailed Tech Stack section to `README.md` covering Go, Gin, GORM, PostgreSQL, etc. |

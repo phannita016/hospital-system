@@ -1,6 +1,18 @@
 # Hospital System API
 
 A modern, scalable hospital management system built with Go, focusing on Clean Architecture, MVC patterns, and Object-Oriented Programming (OOP) principles.
+<br/>
+
+## 🚀 Tech Stack
+
+- **Backend**: [Go (Golang)](https://go.dev/) (v1.24+)
+- **Web Framework**: [Gin Gonic](https://gin-gonic.com/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
+- **ORM**: [GORM](https://gorm.io/)
+- **Authentication**: [JWT](https://jwt.io/) (JSON Web Tokens)
+- **Configuration**: [Viper](https://github.com/spf13/viper)
+- **Live Reload**: [Air](https://github.com/air-verse/air)
+- **Containerization**: [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
 
 ## 🏗️ Project Structure
 
