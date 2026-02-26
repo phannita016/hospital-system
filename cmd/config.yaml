@@ -1,7 +1,13 @@
 database:
+  # host: "db"
   host: "localhost"
   port: "5432"
   user: "user"
   password: "password"
   dbname: "hospital"
   sslmode: false
+
+server:
+  domain_name: "mywebsite.com"
+  port: ":8080"
+  server_mode: "development"
