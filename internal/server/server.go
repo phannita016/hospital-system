@@ -12,10 +12,9 @@ func Run(cfg *config.Config) {
 		log.Fatalf("failed to connect to database: %v", err)
 	}
 	defer cleanup()
-	_ = db // Suppress unused variable error until repositories are implemented
 	log.Println("Database connection successful. Application is running.")
 
-	engine := NewGinEngine(cfg)
+	engine := NewGinEngine(cfg, db)
 
 	port := cfg.Server.Port
 	log.Printf("Starting server on %s", port)

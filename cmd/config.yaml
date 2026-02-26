@@ -6,8 +6,10 @@ database:
   password: "password"
   dbname: "hospital"
   sslmode: false
+  db_timezone: "Asia/Bangkok"
 
 server:
   domain_name: "mywebsite.com"
   port: ":8080"
   server_mode: "development"
+  jwt_secret: "secret-key"

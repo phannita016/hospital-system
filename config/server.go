@@ -14,6 +14,7 @@ type Server struct {
 	DomainName string `mapstructure:"domain_name"`
 	Port       string `mapstructure:"port"`
 	Mode       string `mapstructure:"server_mode"`
+	JWTSecret  string `mapstructure:"jwt_secret"`
 }
 
 func (s *Server) SetMode(mode string) error {

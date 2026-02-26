@@ -8,6 +8,9 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	patientEntity "hospital/internal/modules/patient/entity"
+	staffEntity "hospital/internal/modules/staff/entity"
 )
 
 func NewDB(dsn config.Database) (*gorm.DB, func(), error) {
@@ -27,6 +30,11 @@ func NewDB(dsn config.Database) (*gorm.DB, func(), error) {
 			if err == nil {
 				err = sqlDB.Ping()
 				if err == nil {
+					// Auto Migrate
+					err = db.AutoMigrate(&staffEntity.Staff{}, &patientEntity.Patient{})
+					if err != nil {
+						return nil, f, fmt.Errorf("failed to auto migrate: %w", err)
+					}
 					return db, func() { sqlDB.Close() }, nil
 				}
 			}

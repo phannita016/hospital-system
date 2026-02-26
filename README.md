@@ -21,10 +21,20 @@ hospital-system/
 │   │   ├── cors.go             # CORS configuration
 │   │   └── security.go         # Security headers and logic
 │   ├── modules/                # Domain-driven modules (The Core)
-│   │   └── health/             # Health Check Module
-│   │       ├── controller/     # C: Controller (HTTP Handlers)
-│   │       ├── entity/         # M: Model (Domain Entities)
-│   │       └── service/        # M: Model (Business Logic Layer)
+│   │   ├── health/             # Health Check Module
+│   │   │   ├── controller/     # C: Controller (HTTP Handlers)
+│   │   │   ├── entity/         # M: Model (Domain Entities)
+│   │   │   └── service/        # M: Model (Business Logic Layer)
+│   │   ├── staff/              # Staff & Authentication Module
+│   │   │   ├── controller/     # Staff Registration & Login
+│   │   │   ├── entity/         # Staff Models
+│   │   │   ├── repository/     # Staff Database Layer
+│   │   │   └── service/        # Auth Logic & JWT Handling
+│   │   └── patient/            # Patient Management Module
+│   │       ├── controller/     # Patient Search
+│   │       ├── entity/         # Patient Models
+│   │       ├── repository/     # Patient Search & Isolation Logic
+│   │       └── service/        # Patient Business Logic
 │   └── server/                 # Server setup and route registration
 │       ├── gin.go              # Gin engine setup
 │       ├── routes.go           # API route definitions
@@ -85,6 +95,11 @@ This project is developed in collaboration with AI (Antigravity). We utilize AI 
 
 ### API Endpoints
 - **Health Check**: `GET /health` - Returns the current status of the API.
+- **Staff Management**:
+    - `POST /staff/create`: Create a new staff member.
+    - `POST /staff/login`: Staff login to receive JWT.
+- **Patient Management**:
+    - `GET /patient/search`: Search patients (Requires JWT, restricted to same hospital).
 
 ---
 Created with ❤️ for High-Quality Go Development.
