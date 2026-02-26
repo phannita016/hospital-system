@@ -2,7 +2,7 @@ package controller
 
 import (
 	"hospital/internal/modules/health/service"
-	"net/http"
+	"hospital/internal/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,5 +19,5 @@ func NewHealthController(healthService service.HealthService) *HealthController 
 
 func (h *HealthController) CheckHealth(c *gin.Context) {
 	res := h.healthService.CheckHealth()
-	c.JSON(http.StatusOK, res)
+	utils.SuccessResponse(c, "", res)
 }

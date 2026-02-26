@@ -1,7 +1,9 @@
 package controller
 
 import (
+	"errors"
 	"hospital/internal/modules/patient/service"
+	"hospital/internal/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,7 +22,7 @@ func NewPatientController(patientService service.PatientService) *PatientControl
 func (pc *PatientController) Search(c *gin.Context) {
 	hospitalID, exists := c.Get("hospital_id")
 	if !exists {
-		c.JSON(http.StatusForbidden, gin.H{"error": "hospital context not found"})
+		utils.ErrorResponse(c, http.StatusForbidden, errors.New("hospital context not found"))
 		return
 	}
 
@@ -40,9 +42,9 @@ func (pc *PatientController) Search(c *gin.Context) {
 
 	patients, err := pc.patientService.SearchPatients(hospitalID.(string), criteria)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		utils.ErrorResponse(c, http.StatusInternalServerError, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, patients)
+	utils.SuccessResponse(c, "success", patients)
 }

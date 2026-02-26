@@ -15,3 +15,6 @@ This file tracks the updates and tasks completed within the Hospital System proj
 | 2026-02-26 11:02 | AI | Add Air Live Reload | Integrated Air for live reloading, updated Docker setup, and README instructions. |
 | 2026-02-26 11:04 | AI | Integrate GORM ORM | Switched database driver to GORM with PostgreSQL, enabling better ORM capabilities and Clean Architecture. |
 | 2026-02-26 11:42 | AI | Implement Hospital Middleware | Implemented Staff (Auth/JWT) and Patient modules with hospital isolation logic and GORM auto-migration. |
+| 2026-02-26 11:50 | Developer | Integration & Testing | Reviewed and integrated Staff and Patient modules, ensuring correct database migrations and security settings. |
+| 2026-02-26 15:45 | Developer | Bug Identification | Identified that logs were not responding with error messages and initiated the debugging process. |
+| 2026-02-26 15:59 | AI | Fix Logging Error Messages | Updated `ErrorResponse` utility to include errors in Gin context, ensuring they appear in logs. |

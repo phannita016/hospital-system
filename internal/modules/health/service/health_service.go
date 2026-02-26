@@ -14,6 +14,6 @@ func NewHealthService() HealthService {
 
 func (s *healthService) CheckHealth() *entity.Health {
 	return &entity.Health{
-		Status: "ok",
+		Message: "Welcome to the Hospital Management System API! All systems are operational.",
 	}
 }

@@ -14,7 +14,13 @@ func NewGinEngine(cfg *config.Config, db *gorm.DB) *gin.Engine {
 	}
 
 	router := gin.New()
-	router.Use(gin.Recovery(), middleware.CORS(), middleware.Security())
+	router.Use(
+		gin.Recovery(),
+		middleware.CORS(),
+		middleware.Security(),
+		middleware.ResponseWrapper(),
+		middleware.LoggingMiddleware(),
+	)
 
 	RegisterRoutes(router, db, cfg)
 

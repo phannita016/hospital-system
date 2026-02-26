@@ -27,7 +27,7 @@ services:
       DB_NAME: hospital
     volumes:
       - .:/app
-    command: ["air", "-c", ".air.toml"]
+    command: air -c .air.toml
 
 volumes:
   postgres_data:

@@ -2,6 +2,7 @@ package controller
 
 import (
 	"hospital/internal/modules/staff/service"
+	"hospital/internal/utils"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -28,17 +29,17 @@ type CreateStaffRequest struct {
 func (sc *StaffController) CreateStaff(c *gin.Context) {
 	var req CreateStaffRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		utils.ErrorResponse(c, http.StatusBadRequest, err)
 		return
 	}
 
 	staff, err := sc.staffService.CreateStaff(req.Username, req.Password, req.HospitalID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		utils.ErrorResponse(c, http.StatusInternalServerError, err)
 		return
 	}
 
-	c.JSON(http.StatusCreated, staff)
+	utils.SuccessResponse(c, "success", staff)
 }
 
 type LoginRequest struct {
@@ -49,23 +50,23 @@ type LoginRequest struct {
 func (sc *StaffController) Login(c *gin.Context) {
 	var req LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		utils.ErrorResponse(c, http.StatusBadRequest, err)
 		return
 	}
 
 	staff, err := sc.staffService.Login(req.Username, req.Password)
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		utils.ErrorResponse(c, http.StatusUnauthorized, err)
 		return
 	}
 
 	token, err := sc.tokenService.GenerateToken(staff.ID, staff.HospitalID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to generate token"})
+		utils.ErrorResponse(c, http.StatusInternalServerError, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
+	utils.SuccessResponse(c, "success", gin.H{
 		"message": "Login successful",
 		"token":   token,
 	})
